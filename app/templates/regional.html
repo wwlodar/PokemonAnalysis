@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
+{% extends "base.html" %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Regionals</title>
 </head>
-<body>
+<body class="back-ground-analysis">
     <p>{{region}} region data</p>
     <img src="data:image/png;base64,{{data}}">
+    <img src="data:image/png;base64,{{CP_data}}">
 </body>
+{% endblock %}
 </html>

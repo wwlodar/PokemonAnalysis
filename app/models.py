@@ -31,11 +31,18 @@ def region_group_count(df1, region1):
     plt.close()
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
-df1.plot(kind="bar", x="Primary Type", y="count", figsize=(9,5), colormap="rainbow")
-df = df.loc[df["Region of Origin"] == "Kanto"]
-df["count"] = 1
-df = df.groupby(["Primary Type"]).count()["count"].copy()
-print(df.max())
+
+region = "Kanto"
+def region_CP_count(df1, region1):
+    df1 = df1.loc[df1["Region of Origin"] == region1]
+    z = df1.boxplot(by="Primary Type", column="Base Stat Total", figsize=(8, 5))
+    z.show()
+
+
+
+region_CP_count(df, region)
+
+
 #print(df.loc[df["Alternate Form Name"].str.contains("Mega", na=False)])
 #fig = Figure()
 #ax = fig.subplots()

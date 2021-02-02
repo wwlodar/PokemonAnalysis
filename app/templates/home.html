@@ -1,21 +1,14 @@
 <!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
 <html lang="en">
-<head>
+<head class="home-image">
     <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
-<body>
-<form action="{{url_for('regionals')}}">
-    <div class="btn-group-vertical" role="group" aria-label="Basic example">
-        <button name = "region" value = "Kanto" type="submit" class="btn btn-secondary">Kanto</button>
-        <button name = "region" value = "Johto" type="submit" class="btn btn-secondary">Johto</button>
-        <button name = "region" value = "Hoenn" type="submit" class="btn btn-secondary">Hoenn</button>
-        <button name = "region" value = "Sinnoh" type="submit" class="btn btn-secondary">Sinnoh</button>
-        <button name = "region" value = "Unova" type="submit" class="btn btn-secondary">Unova</button>
-        <button name = "region" value = "Kalos" type="submit" class="btn btn-secondary">Kalos</button>
-        <button name = "region" value = "Galar" type="submit" class="btn btn-secondary">Galar</button>
-    </div>
-</form>
+<body class="hero">
+    <h1>Welcome Pokemon Analysis Webpage! </h1>
+    <h2>Please choose a region you are interested in form the menu.</h2>
+</div>
 </body>
+{% endblock %}
 </html>

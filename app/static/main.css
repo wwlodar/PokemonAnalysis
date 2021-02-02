@@ -1,0 +1,46 @@
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+
+}
+
+.hero::before {
+      content: "";
+      background-image: url("686166.jpg");
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+}
+
+h1 {
+  position: relative;
+  font-size: 5rem;
+  line-height: 0.9;
+  text-align: center;
+  color: #0b1128;
+  top: 20%;
+  padding-left: 15%;
+  padding-right: 15%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  position: relative;
+  font-size: 3.5rem;
+  line-height: 0.9;
+  color: #0d1530;
+  top: 25%;
+  padding-left: 15%;
+  padding-right: 15%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.back-ground-analysis {
+background-color: #efe4d7;
+}

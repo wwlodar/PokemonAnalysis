@@ -21,12 +21,6 @@ for col in cols_to_check:
     df[col] = df[col].map(lambda x: x.replace('"', ''))
 
 
-def grass_pokemon(df1):
-    df1 = df1.sort_index()
-    df1 = df1.loc[df1["Primary Type"] == 'Grass']
-    return df1
-
-
 def region_group_count(df1, region1):
     df1 = df1.loc[df1["Region of Origin"] == region1]
     df1["count"] = 1
@@ -36,14 +30,34 @@ def region_group_count(df1, region1):
     colors = np.array(['g'] * len(df1))
     colors[mask.values] = 'r'
     colors[mask2.values] = 'r'
-    df1.plot(kind="bar", x="Primary Type", y="count", figsize=(9, 5), color=colors)
+    df1.plot(kind="bar", x="Primary Type", y="count", figsize=(8, 5), color=colors)
     plt.title("Pokemon Types in the region")
+    plt.ylabel("Quantity")
     plt.xticks(fontsize=9, rotation=40)
     buf = BytesIO()
-    plt.savefig(buf, format="png")
+    plt.savefig(buf, format="png", transparent=True)
     plt.close()
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
+
+
+def region_cp_count(df1, region1):
+    df1 = df1.loc[df1["Region of Origin"] == region1]
+    df1.boxplot(by="Primary Type", column="Base Stat Total", figsize=(8, 5), grid=False, labels=None)
+    title_boxplot = 'Combat Power by Pokemon Type'
+    plt.title(title_boxplot)
+    ax1 = plt.axes()
+    ax1.xaxis.set_label_text('foo')
+    ax1.xaxis.label.set_visible(False)
+    plt.suptitle('')
+    plt.xticks(fontsize=9, rotation=40)
+    plt.ylabel("Combat Power")
+    buf = BytesIO()
+    plt.savefig(buf, format="png", transparent=True)
+    plt.close()
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return data
+
 
 
 def group_count(df1):
