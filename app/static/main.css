@@ -7,7 +7,7 @@
 
 .hero::before {
       content: "";
-      background-image: url("686166.jpg");
+      background-image: url("pokemon-homepage.jpg");
       background-size: cover;
       position: absolute;
       top: 0px;
@@ -41,6 +41,21 @@ h2 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.back-ground-analysis {
-background-color: #efe4d7;
+
+.background-regionals{
+      background-image: url("background-regionals.jpg");
+      background-attachment:fixed;
+      background-size: cover;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      }
+
+.rainbow-text {
+  background-image: linear-gradient(to left, yellow, green, indigo);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 5rem;
+  text-align: center;
 }

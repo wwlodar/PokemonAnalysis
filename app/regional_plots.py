@@ -15,6 +15,8 @@ df = df.drop(["Pokemon Id", "Original Pokemon ID", "Special Event Ability", "Spe
 df["Legendary Type"] = df["Legendary Type"].astype(str)
 df["Alternate Form Name"] = df["Alternate Form Name"].astype(str)
 df["Secondary Type"] = df["Secondary Type"].astype(str)
+df["Legendary Type"] = df["Legendary Type"].astype(str)
+df["Pre-Evolution Pokemon Id"] = df["Pre-Evolution Pokemon Id"].astype(str)
 cols_to_check = ["Pokemon Name", "Classification", "Primary Type", "Secondary Type", "Alternate Form Name",
                  "Region of Origin", "Legendary Type"]
 for col in cols_to_check:
@@ -28,8 +30,8 @@ def region_group_count(df1, region1):
     mask = df1 <= 3
     mask2 = df1 >= 20
     colors = np.array(['g'] * len(df1))
-    colors[mask.values] = 'r'
-    colors[mask2.values] = 'r'
+    colors[mask.values] = 'm'
+    colors[mask2.values] = 'y'
     df1.plot(kind="bar", x="Primary Type", y="count", figsize=(8, 5), color=colors)
     plt.title("Pokemon Types in the region")
     plt.ylabel("Quantity")
@@ -43,7 +45,11 @@ def region_group_count(df1, region1):
 
 def region_cp_count(df1, region1):
     df1 = df1.loc[df1["Region of Origin"] == region1]
-    df1.boxplot(by="Primary Type", column="Base Stat Total", figsize=(8, 5), grid=False, labels=None)
+    df1.boxplot(by="Primary Type", column="Base Stat Total", figsize=(8, 5), grid=False, labels=None,
+                color={'medians': 'purple',
+                       "boxes": "green",
+                       "whiskers" : "black",
+                       }, medianprops={'linewidth': 3}, capprops={'linewidth' : 3}, boxprops={'linewidth' : 2.5})
     title_boxplot = 'Combat Power by Pokemon Type'
     plt.title(title_boxplot)
     ax1 = plt.axes()
@@ -70,16 +76,21 @@ def group_count(df1):
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
 
-
-# region_group_count(df, region)
-#print(df.loc[df["Alternate Form Name"].str.contains("Mega", na=False)])
-
-#def group_count():
- #   df["count"] = 1
-  #  print(df.groupby(["Primary Type"]).count()["count"])
-
-##generation_group_count()
-
+def pokemon_evolution_ratio(df1, region1):
+    df1 = df1.loc[df1["Region of Origin"] == region1]
+    no_evolutions = df1.loc[(df1["Pre-Evolution Pokemon Id"] == "nan") & (df1["Legendary Type"] == "nan")].count()[0]
+    legendary_pokemon = df1.loc[df1["Legendary Type"] != "nan" ].count()[0]
+    two_evolutions = df1.loc[df1["Pre-Evolution Pokemon Id"] != "nan"].count()[0]
+    colors = ["#59d813","#3e970d","#870b37"]
+    lables = ["Primary Pokemon", "Legendary Pokemon", "Evolved Pokemon"]
+    plt.pie([no_evolutions, legendary_pokemon, two_evolutions], colors=colors, labels = lables, autopct="%.1f %%",
+            pctdistance=0.6, explode=[0,0,0.1])
+    plt.title("Evolved vs Primary Pokemon in the region")
+    buf = BytesIO()
+    plt.savefig(buf, format="png", transparent=True)
+    plt.close()
+    data = base64.b64encode(buf.getbuffer()).decode("ascii")
+    return data
 
 ## for each generation and type show data/ for all show data:
 ## how many pokemons are in each type

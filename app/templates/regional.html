@@ -6,10 +6,33 @@
     <meta charset="UTF-8">
     <title>Regionals</title>
 </head>
-<body class="back-ground-analysis">
-    <p>{{region}} region data</p>
-    <img src="data:image/png;base64,{{data}}">
-    <img src="data:image/png;base64,{{CP_data}}">
+<body class= "background-regionals">
+    <p class="rainbow-text"> {{region}} region data</p>
+    <div class="row">
+        <div class="col-9">
+                <img src="data:image/png;base64,{{data}}">
+        </div>
+        <div class="col-3">
+            <p>text</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9">
+            <img src="data:image/png;base64,{{CP_data}}">
+        </div>
+        <div class="col-3">
+            <p>another</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-9">
+            <img src="data:image/png;base64,{{evolution_data}}">
+            <p>*All of the Legendary Pokemon are also Primary Pokemon.</p>
+        </div>
+        <div class="col-3">
+            <p>third</p>
+        </div>
+    </div>
 </body>
 {% endblock %}
 </html>

@@ -15,6 +15,7 @@ df = df.drop(["Pokemon Id", "Original Pokemon ID", "Special Event Ability", "Spe
 df["Legendary Type"] = df["Legendary Type"].astype(str)
 df["Alternate Form Name"] = df["Alternate Form Name"].astype(str)
 df["Secondary Type"] = df["Secondary Type"].astype(str)
+df["Pre-Evolution Pokemon Id"] = df["Pre-Evolution Pokemon Id"].astype(str)
 cols_to_check = ["Pokemon Name", "Classification", "Primary Type", "Secondary Type", "Alternate Form Name",
                  "Region of Origin", "Legendary Type"]
 for col in cols_to_check:
@@ -33,14 +34,15 @@ def region_group_count(df1, region1):
     return data
 
 region = "Kanto"
-def region_CP_count(df1, region1):
+def pokemon_evolution_ratio(df1, region1):
     df1 = df1.loc[df1["Region of Origin"] == region1]
-    z = df1.boxplot(by="Primary Type", column="Base Stat Total", figsize=(8, 5))
-    z.show()
+    no_evolutions = df1.loc[df1["Pre-Evolution Pokemon Id"] == "nan"].count()[0]
+    two_evolutions = df1.loc[df1["Pre-Evolution Pokemon Id"] != "nan"].count()[0]
+    plt.pie([no_evolutions, two_evolutions])
+    plt.show()
 
 
-
-region_CP_count(df, region)
+pokemon_evolution_ratio(df,region)
 
 
 #print(df.loc[df["Alternate Form Name"].str.contains("Mega", na=False)])
