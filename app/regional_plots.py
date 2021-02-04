@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 from app import app
 
 
-
 df = pd.read_csv('app/PokemonDatabase.csv', delimiter = ',')
 df = df.drop(["Pokemon Id", "Original Pokemon ID", "Special Event Ability", "Special Event Ability Description",
                   "Primary Egg Group", "Secondary Egg Group", "Egg Cycle Count", "Health EV", "Attack EV",
@@ -91,6 +90,7 @@ def pokemon_evolution_ratio(df1, region1):
     plt.close()
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
+
 
 ## for each generation and type show data/ for all show data:
 ## how many pokemons are in each type

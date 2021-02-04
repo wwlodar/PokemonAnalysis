@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from app import app
 from app import regional_plots
-
+from app import models
 
 df = regional_plots.df
 @app.route('/')
@@ -15,7 +15,10 @@ def regionals():
     data = regional_plots.region_group_count(df, region)
     CP_data = regional_plots.region_cp_count(df, region)
     evolution_data = regional_plots.pokemon_evolution_ratio(df, region)
-    return render_template('regional.html', data=data, region=region, CP_data=CP_data, evolution_data=evolution_data)
+    pokemon_number = models.number_of_pokemon(df,region)
+    biggest_group = models.biggest_pokemon_group(df,region)
+    return render_template('regional.html', data=data, region=region, CP_data=CP_data, evolution_data=evolution_data,
+                           pokemon_number=pokemon_number, biggest_group=biggest_group)
 
 
 @app.errorhandler(404)
