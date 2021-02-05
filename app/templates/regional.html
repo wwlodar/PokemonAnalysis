@@ -9,32 +9,41 @@
 <body class= "background-regionals">
     <p class="rainbow-text"> {{region}} region data</p>
     <div class="row">
-        <div class="col-9">
+        <div class="col-8">
                 <img src="data:image/png;base64,{{data}}">
         </div>
-        <div class="col-3">
+        <div class="col-4">
+            <br>
+            <br>
             <p>{{pokemon_number}}</p>
-            {% for item in biggest_group %}
-            <p>{{item}}</p>
-            {% endfor %}
         </div>
     </div>
     <div class="row">
-        <div class="col-9">
+        <div class="col-8">
             <img src="data:image/png;base64,{{CP_data}}">
         </div>
-        <div class="col-3">
-            {% for x in biggest_group %}
-            <p>{{x}}</p>
+        <div class="col-4">
+            <br>
+            <br>
+            <p>Strongest Pokemon in the Region</p>
+            {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+            {% endfor %}
+            <br>
+            <p>Weakest Pokemon in the Region</p>
+            {% for table in table2 %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
             {% endfor %}
         </div>
     </div>
     <div class="row">
-        <div class="col-9">
+        <div class="col-8">
             <img src="data:image/png;base64,{{evolution_data}}">
             <p>*All of the Legendary Pokemon are also Primary Pokemon.</p>
         </div>
-        <div class="col-3">
+        <div class="col-4">
             <p>third</p>
         </div>
     </div>
