@@ -9,21 +9,21 @@
 <body class= "background-regionals">
     <p class="rainbow-text"> {{region}} region data</p>
     <div class="row">
-        <div class="col-8">
+        <div class="col-7">
                 <img src="data:image/png;base64,{{data}}">
         </div>
-        <div class="col-4">
+        <div class="col-5">
             <br>
             <br>
-            <p>{{pokemon_number}}</p>
+            <br>
+            <p>Total number of pokemon in the region:<b> {{pokemon_number}}</b></p>
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-7">
             <img src="data:image/png;base64,{{CP_data}}">
         </div>
-        <div class="col-4">
-            <br>
+        <div class="col-5">
             <br>
             <p>Strongest Pokemon in the Region</p>
             {% for table in tables %}
@@ -39,12 +39,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-8">
+        <div class="col-7">
             <img src="data:image/png;base64,{{evolution_data}}">
-            <p>*All of the Legendary Pokemon are also Primary Pokemon.</p>
         </div>
-        <div class="col-4">
-            <p>third</p>
+        <div class="col-5">
+            <p>Most of Legendary Pokemon are Primary and only <b>{{legendary_evolved}}</b> Legendary Pokemon can evolve.
+                There are <b>{{total_number_of_legendary_pokemon}}</b> Legendary Pokemon in all regions,
+                <b>{{number_of_legendary_pokemon}}</b> of them live in {{region}} Region:</p>
+                {% for table in table3 %}
+                {{titles[loop.index]}}
+                {{ table|safe }}
+                {% endfor %}
         </div>
     </div>
 </body>

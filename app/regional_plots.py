@@ -20,7 +20,8 @@ cols_to_check = ["Pokemon Name", "Classification", "Primary Type", "Secondary Ty
                  "Region of Origin", "Legendary Type"]
 for col in cols_to_check:
     df[col] = df[col].map(lambda x: x.replace('"', ''))
-
+df.loc[df["Alternate Form Name"] == 'nan', ["Pokemon Name"]] = df["Pokemon Name"]
+df.loc[df["Alternate Form Name"] != 'nan', ["Pokemon Name"]] = df["Pokemon Name"] + str(" ") +(df["Alternate Form Name"])
 
 def region_group_count(df1, region1):
     df1 = df1.loc[df1["Region of Origin"] == region1]
@@ -78,12 +79,12 @@ def group_count(df1):
 def pokemon_evolution_ratio(df1, region1):
     df1 = df1.loc[df1["Region of Origin"] == region1]
     no_evolutions = df1.loc[(df1["Pre-Evolution Pokemon Id"] == "nan") & (df1["Legendary Type"] == "nan")].count()[0]
-    legendary_pokemon = df1.loc[df1["Legendary Type"] != "nan" ].count()[0]
+    legendary_pokemon = df1.loc[(df1["Legendary Type"] != "nan") & (df1["Pre-Evolution Pokemon Id"] == "nan")].count()[0]
     two_evolutions = df1.loc[df1["Pre-Evolution Pokemon Id"] != "nan"].count()[0]
     colors = ["#59d813","#3e970d","#870b37"]
     lables = ["Primary Pokemon", "Legendary Pokemon", "Evolved Pokemon"]
     plt.pie([no_evolutions, legendary_pokemon, two_evolutions], colors=colors, labels = lables, autopct="%.1f %%",
-            pctdistance=0.6, explode=[0,0,0.1])
+            pctdistance=0.6)
     plt.title("Evolved vs Primary Pokemon in the region")
     buf = BytesIO()
     plt.savefig(buf, format="png", transparent=True)

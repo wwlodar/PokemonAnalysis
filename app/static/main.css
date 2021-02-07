@@ -22,8 +22,8 @@ h1 {
   font-size: 5rem;
   line-height: 0.9;
   text-align: center;
-  color: #0b1128;
-  top: 20%;
+  color:  #0b1128;
+  padding-top: 10%;
   padding-left: 15%;
   padding-right: 15%;
   font-family: Arial, Helvetica, sans-serif;
@@ -58,4 +58,21 @@ h2 {
   color: transparent;
   font-size: 5rem;
   text-align: center;
+}
+
+.mystyle {
+    font-size: 11pt;
+    font-family: Arial;
+    border-collapse: collapse;
+    border: 1px solid silver;
+    text-align: center;
+
+}
+
+.mystyle td, th {
+    padding: 5px;
+}
+
+.mystyle tr:nth-child(even) {
+    background: #E0E0E0;
 }
