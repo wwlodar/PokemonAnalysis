@@ -17,6 +17,7 @@ def regionals():
     evolution_data = regional_plots.pokemon_evolution_ratio(df, region)
     pokemon_number = models.number_of_pokemon(df,region)
     best = models.best_pokemon(df,region)
+    popular_pokemon = models.popular_pokemon(df)
     worst = models.worst_pokemon(df, region)
     total_number_of_legendary_pokemon = models.total_number_of_legendary_pokemon(df)
     number_of_legendary_pokemon = models.number_of_legendary_pokemon(df,region)
@@ -27,6 +28,7 @@ def regionals():
                            pokemon_number=pokemon_number, total_number_of_legendary_pokemon=total_number_of_legendary_pokemon,
                            number_of_legendary_pokemon=number_of_legendary_pokemon,
                            legendary_evolved=legendary_evolved,
+                           popular_pokemon=popular_pokemon,
                            tables=[best.to_html(index=False, classes="mystyle")],
                            table2=[worst.to_html(index=False, classes="mystyle")],
                            table3=[legendary_table.to_html(index=False, classes="mystyle")],

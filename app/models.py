@@ -2,6 +2,15 @@ def number_of_pokemon(df1, region1):
     return df1.loc[df1["Region of Origin"] == region1].count()[0]
 
 
+def popular_pokemon(df1):
+    df1["count"] = 1
+    df2 = df1.groupby(["Primary Type"]).count()["count"].copy()
+    df2 = df2.sort_values(ascending=False)
+    return df2[0:1].to_string().replace("Primary Type", " "), \
+           df2[1:2].to_string().replace("Primary Type", " "), \
+           df2[2:3].to_string().replace("Primary Type", " ")
+
+
 def worst_pokemon(df1, region1):
     df1 = df1.loc[df1["Region of Origin"] == region1]
     df1.sort_values(by="Base Stat Total", inplace=True)

@@ -65,7 +65,6 @@ def region_cp_count(df1, region1):
     return data
 
 
-
 def group_count(df1):
     df1["count"] = 1
     df1 = df1.groupby(["Primary Type"]).count()["count"].copy()
@@ -91,11 +90,3 @@ def pokemon_evolution_ratio(df1, region1):
     plt.close()
     data = base64.b64encode(buf.getbuffer()).decode("ascii")
     return data
-
-
-## for each generation and type show data/ for all show data:
-## how many pokemons are in each type
-## how many come from evolution
-## which one has highest CP
-## compare weakest and strongest pokemon in each group (whisker chart)
-## legendary and mythical pokemon

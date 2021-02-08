@@ -16,7 +16,11 @@
             <br>
             <br>
             <br>
-            <p>Total number of pokemon in the region:<b> {{pokemon_number}}</b></p>
+            <p>Total number of pokemon in the region:<b> {{pokemon_number}}</b>
+                and there are <b>1041</b> Pokemon in total. </p>
+            {% for item in popular_pokemon %}
+            <p>{{item}}</p>
+            {% endfor %}
         </div>
     </div>
     <div class="row">
