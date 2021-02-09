@@ -2,7 +2,7 @@ def number_of_pokemon(df1, region1):
     return df1.loc[df1["Region of Origin"] == region1].count()[0]
 
 
-def popular_pokemon(df1):
+def most_common_pokemon(df1):
     df1["count"] = 1
     df2 = df1.groupby(["Primary Type"]).count()["count"].copy()
     df2 = df2.sort_values(ascending=False)

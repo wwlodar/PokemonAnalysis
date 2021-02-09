@@ -18,7 +18,8 @@
             <br>
             <p>Total number of pokemon in the region:<b> {{pokemon_number}}</b>
                 and there are <b>1041</b> Pokemon in total. </p>
-            {% for item in popular_pokemon %}
+            <p><b>Common Pokemon Types: </b></p>
+            {% for item in most_common_pokemon %}
             <p>{{item}}</p>
             {% endfor %}
         </div>

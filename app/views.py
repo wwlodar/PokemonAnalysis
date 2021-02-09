@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import render_template, request
 from app import app
 from app import regional_plots
 from app import models
@@ -15,24 +15,26 @@ def regionals():
     data = regional_plots.region_group_count(df, region)
     CP_data = regional_plots.region_cp_count(df, region)
     evolution_data = regional_plots.pokemon_evolution_ratio(df, region)
-    pokemon_number = models.number_of_pokemon(df,region)
-    best = models.best_pokemon(df,region)
-    popular_pokemon = models.popular_pokemon(df)
+    pokemon_number = models.number_of_pokemon(df, region)
+    best = models.best_pokemon(df, region)
+    most_common_pokemon = models.most_common_pokemon(df)
     worst = models.worst_pokemon(df, region)
     total_number_of_legendary_pokemon = models.total_number_of_legendary_pokemon(df)
-    number_of_legendary_pokemon = models.number_of_legendary_pokemon(df,region)
+    number_of_legendary_pokemon = models.number_of_legendary_pokemon(df, region)
     legendary_evolved = models.legendary_evolved(df)
-    legendary_table = models.legendary_pokemon(df,region)
+    legendary_table = models.legendary_pokemon(df, region)
     titles = ' '
     return render_template('regional.html', data=data, region=region, CP_data=CP_data, evolution_data=evolution_data,
-                           pokemon_number=pokemon_number, total_number_of_legendary_pokemon=total_number_of_legendary_pokemon,
+                           pokemon_number=pokemon_number,
+                           total_number_of_legendary_pokemon=total_number_of_legendary_pokemon,
                            number_of_legendary_pokemon=number_of_legendary_pokemon,
                            legendary_evolved=legendary_evolved,
-                           popular_pokemon=popular_pokemon,
+                           most_common_pokemon=most_common_pokemon,
                            tables=[best.to_html(index=False, classes="mystyle")],
                            table2=[worst.to_html(index=False, classes="mystyle")],
                            table3=[legendary_table.to_html(index=False, classes="mystyle")],
                            titles=titles)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
