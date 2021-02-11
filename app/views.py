@@ -18,6 +18,7 @@ def regionals():
     pokemon_number = models.number_of_pokemon(df, region)
     best = models.best_pokemon(df, region)
     most_common_pokemon = models.most_common_pokemon(df)
+    least_common_pokemon = models.least_common_pokemon(df)
     worst = models.worst_pokemon(df, region)
     total_number_of_legendary_pokemon = models.total_number_of_legendary_pokemon(df)
     number_of_legendary_pokemon = models.number_of_legendary_pokemon(df, region)
@@ -30,6 +31,7 @@ def regionals():
                            number_of_legendary_pokemon=number_of_legendary_pokemon,
                            legendary_evolved=legendary_evolved,
                            most_common_pokemon=most_common_pokemon,
+                           least_common_pokemon=least_common_pokemon,
                            tables=[best.to_html(index=False, classes="mystyle")],
                            table2=[worst.to_html(index=False, classes="mystyle")],
                            table3=[legendary_table.to_html(index=False, classes="mystyle")],
